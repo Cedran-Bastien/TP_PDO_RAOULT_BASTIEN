@@ -1,0 +1,107 @@
+CREATION DES TABLES :
+
+
+AGENCE : 
+
+
+create table agence  (
+  code_ag varchar(10),
+  nomresp varchar(30) not null,
+  numtel varchar(12) not null,
+  rue varchar(40),
+  ville varchar(25),
+  codpostal varchar(5),
+  pays  varchar(20),
+  primary key (code_ag)
+  );
+  
+CALENDRIER : 
+
+
+create table calendrier (
+    no_imm varchar(10),
+    datejour date,
+    paslibre char(1),
+    primary key (no_imm,datejour)
+);
+
+
+CATEGORIE : 
+
+
+create table categorie  (
+  code_categ varchar(3),
+  libelle varchar(30) not null,
+  nbpers int(2) not null,
+  type_permis varchar(2)   not null,
+  code_tarif varchar(3),
+  primary key (code_categ)
+  );
+  
+  
+CLIENT :
+
+
+create table client  (
+  code_cli varchar(8),
+  nom  varchar(40) not null,
+  rue varchar(40) not null,
+  ville varchar(25) not null,
+  codpostal varchar(5) not null,
+  primary key (code_cli)
+  );
+  
+
+DOSSIER : 
+  
+  
+create table dossier  (
+  no_dossier int(6),
+  date_retrait date not null,
+  date_retour date not null,
+  date_effect date,
+  kil_retrait int(6),
+  kil_retour int(6),
+  type_tarif varchar(5),
+  assur char(1),
+  nbjour_fact int(3),
+  nbsem_fact int(3),
+  remise real(4,2),
+  code_cli varchar(8),
+  no_imm varchar(10),
+  ag_retrait varchar(10),
+  ag_retour varchar(10),
+  ag_reserve varchar(10),
+  primary key (no_dossier)
+  );
+  
+
+TARIF : 
+
+  
+create table tarif  (
+  code_tarif varchar(3),
+  tarif_jour real(6,2) not null,
+  tarif_hebdo real(6,2) not null,
+  tarif_kil real(4,2) not null,
+  tarif_w500 real(6,2) not null,
+  tarif_w800 real(6,2) not null,
+  tarif_asur real(6,2) not null,
+  primary key (code_tarif)
+  );
+  
+  
+VEHICULE : 
+
+
+create table vehicule  (
+  no_imm varchar(10),
+  marque varchar(20) not null,
+  modele varchar(20) not null,
+  couleur varchar(20),
+  date_achat date ,
+  kilometres int(6),
+  code_categ varchar(3),
+  code_ag varchar(10),
+  primary key (no_imm)
+);
