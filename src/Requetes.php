@@ -33,7 +33,12 @@ class Requetes
         $statement->bindParam(3,$datefin);
         $statement->execute();
 
-        return $statement;
+        $statement2 = $bdd->prepare("SELECT no_imm,datejour,paslibre from calendrier where datejour between ? and ? and no_imm = ?");
+        $statement2->bindParam(1,$datedebut);
+        $statement2->bindParam(2,$datefin);
+        $statement2->bindParam(3,$no_imm);
+        $statement2->execute();
+        return $statement2;
     }
 
     public static function q3(int $nbjours, String $modele):PDOStatement {
@@ -60,7 +65,7 @@ class Requetes
     public static function q5(String $modele1, String $modele2):PDOStatement{
         $bdd = Requetes::connection();
 
-        $statement=$bdd->prepare("SELECT nom,ville,codpostal from client inner join dossier on client.code_Cli = dossier.code_Cli
+        $statement=$bdd->prepare("SELECT nom as n,ville as v,codpostal as c from client inner join dossier on client.code_Cli = dossier.code_Cli
             inner join vehicule on dossier.no_imm = vehicule.no_imm where vehicule.modele = ?
             intersect
             SELECT nom,ville,codpostal from client inner join dossier on client.code_Cli = dossier.code_Cli
