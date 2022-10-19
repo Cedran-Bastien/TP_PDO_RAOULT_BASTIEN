@@ -1,11 +1,12 @@
 <?php
-
+session_start();
 class Requetes
 {
 
+
     public static function connection(): PDO
     {
-        $bdd = new PDO('mysql:host=localhost; dbname=td1_ex3; charset=utf8', 'root', '');
+        $bdd = new PDO("mysql:host=localhost; dbname=" . $_SESSION['bdd'] . "; charset=utf8", $_SESSION['user'], $_SESSION['pswd']);
         return $bdd;
     }
 

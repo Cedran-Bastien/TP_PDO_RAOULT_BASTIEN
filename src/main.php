@@ -1,7 +1,11 @@
 <?php
 error_reporting(E_ALL);
-
 require_once "Requetes.php";
+echo "<head>
+    <meta charset='utf-8'>
+    <!-- importer le fichier de style -->
+    <link rel='stylesheet' href='main.css' media='screen' type='text/css'/>
+</head>";
 
 echo "<br>" ."<br>";
 echo <<<END
